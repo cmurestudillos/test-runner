@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Aplicación de escritorio para ejecutar tests unitarios y E2E",
   "main": "src/main.js",
+  "packageManager": "pnpm@11.1.2",
   "scripts": {
     "start": "electron .",
+    "start:dev": "electron . --dev",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
     "package:mac": "electron-builder build --mac",
     "package:win": "electron-builder build --windows",
     "package:linux": "electron-builder build --linux"
@@ -23,13 +27,18 @@
     "fs-extra": "^11.3.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.36.0",
     "electron": "^38.1.2",
     "electron-builder": "^26.0.12",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^60.3.1",
+    "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^15.15.0",
     "prettier": "^3.6.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["electron", "electron-winstaller"]
   },
   "build": {
     "appId": "com.cmurestudillos.test-runner",
@@ -39,13 +48,13 @@
     },
     "mac": {
       "category": "public.app-category.developer-tools",
-      "icon": "src/assets/icon.icns"
+      "icon": "src/assets/icons/icon.icns"
     },
     "win": {
-      "icon": "src/assets/icon.ico"
+      "icon": "src/assets/icons/icon.ico"
     },
     "linux": {
-      "icon": "src/assets/icon.png",
+      "icon": "src/assets/icons/icon.png",
       "category": "Development"
     }
   }

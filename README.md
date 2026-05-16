@@ -44,27 +44,28 @@
 ## 🚀 **Instalación**
 
 ### Prerequisitos
-- Node.js 22+ 
-- npm o yarn
+- Node.js 22+
+- pnpm 11+
 - Proyecto con tests configurados
 
 ### Clonar e instalar
 ```bash
 git clone https://github.com/cmurestudillos/test-runner.git
 cd test-runner
-npm install
+pnpm install
 ```
 
 ### Ejecutar en desarrollo
 ```bash
-npm start          # Modo normal
+pnpm start          # Modo normal
+pnpm start:dev      # Modo con DevTools abiertos
 ```
 
 ### Construir para distribución
 ```bash
-npm run package:mac      # Crear ejecutable mac
-npm run package:win      # Crear ejecutable windows
-npm run package:linux    # Crear ejecutable linux
+pnpm package:mac      # Crear ejecutable mac
+pnpm package:win      # Crear ejecutable windows
+pnpm package:linux    # Crear ejecutable linux
 ```
 
 ---

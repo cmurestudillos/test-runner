@@ -1,16 +1,16 @@
-# Directorios compilados
+# Build outputs
 /dist
 /build
 /coverage
+/release
 
-# Node
+# Dependencies
 /node_modules
 
-# Archivos generados
+# Generated files
 *.min.js
 *.min.css
 
-# Otros
+# Lockfiles
 package-lock.json
 yarn.lock
-*.md

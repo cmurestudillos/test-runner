@@ -60,35 +60,31 @@ ipcMain.handle('select-directory', async () => {
 });
 
 ipcMain.handle('read-directory', async (event, dirPath) => {
-  try {
-    const files = await fs.readdir(dirPath, { withFileTypes: true });
-    const result = [];
+  const files = await fs.readdir(dirPath, { withFileTypes: true });
+  const result = [];
 
-    for (const file of files) {
-      if (file.isDirectory() && !file.name.startsWith('.') && file.name !== 'node_modules') {
-        const subFiles = await getTestFiles(path.join(dirPath, file.name));
-        if (subFiles.length > 0) {
-          result.push({
-            name: file.name,
-            type: 'directory',
-            path: path.join(dirPath, file.name),
-            children: subFiles,
-          });
-        }
-      } else if (file.isFile() && isTestFile(file.name)) {
+  for (const file of files) {
+    if (file.isDirectory() && !file.name.startsWith('.') && file.name !== 'node_modules') {
+      const subFiles = await getTestFiles(path.join(dirPath, file.name));
+      if (subFiles.length > 0) {
         result.push({
           name: file.name,
-          type: 'file',
+          type: 'directory',
           path: path.join(dirPath, file.name),
-          testType: getTestType(file.name),
+          children: subFiles,
         });
       }
+    } else if (file.isFile() && isTestFile(file.name)) {
+      result.push({
+        name: file.name,
+        type: 'file',
+        path: path.join(dirPath, file.name),
+        testType: getTestType(file.name),
+      });
     }
-
-    return result;
-  } catch (error) {
-    throw error;
   }
+
+  return result;
 });
 
 async function getTestFiles(dirPath) {
@@ -118,7 +114,7 @@ async function getTestFiles(dirPath) {
     }
 
     return testFiles;
-  } catch (error) {
+  } catch {
     return [];
   }
 }
@@ -144,6 +140,20 @@ function getTestType(filename) {
   return 'unit';
 }
 
+function resolveTestArgs(testPath, scripts) {
+  if (testPath.includes('.e2e.') || testPath.includes('cypress')) {
+    if (scripts['test:e2e']) {
+      return ['run', 'test:e2e'];
+    }
+    if (scripts['cypress']) {
+      return ['run', 'cypress', 'run'];
+    }
+  } else if (scripts['test:unit']) {
+    return ['run', 'test:unit'];
+  }
+  return ['test'];
+}
+
 ipcMain.handle('run-test', async (event, testPath, projectPath) => {
   return new Promise(resolve => {
     const packageJsonPath = path.join(projectPath, 'package.json');
@@ -153,28 +163,16 @@ ipcMain.handle('run-test', async (event, testPath, projectPath) => {
     try {
       if (fs.existsSync(packageJsonPath)) {
         const packageJson = require(packageJsonPath);
-
-        // Detectar el tipo de test y comando apropiado
         if (packageJson.scripts) {
-          if (testPath.includes('.e2e.') || testPath.includes('cypress')) {
-            if (packageJson.scripts['test:e2e']) {
-              args = ['run', 'test:e2e'];
-            } else if (packageJson.scripts['cypress']) {
-              args = ['run', 'cypress', 'run'];
-            }
-          } else if (packageJson.scripts['test:unit']) {
-            args = ['run', 'test:unit'];
-          }
+          args = resolveTestArgs(testPath, packageJson.scripts);
         }
-
-        // Agregar el archivo específico si es compatible
         args.push(testPath);
       }
-    } catch (error) {
+    } catch {
       // Usar configuración por defecto si no se puede leer package.json
     }
 
-    const process = spawn(command, args, {
+    const child = spawn(command, args, {
       cwd: projectPath,
       shell: true,
     });
@@ -182,7 +180,7 @@ ipcMain.handle('run-test', async (event, testPath, projectPath) => {
     let output = '';
     let error = '';
 
-    process.stdout.on('data', data => {
+    child.stdout.on('data', data => {
       const chunk = data.toString();
       output += chunk;
       mainWindow.webContents.send('test-output', {
@@ -192,7 +190,7 @@ ipcMain.handle('run-test', async (event, testPath, projectPath) => {
       });
     });
 
-    process.stderr.on('data', data => {
+    child.stderr.on('data', data => {
       const chunk = data.toString();
       error += chunk;
       mainWindow.webContents.send('test-output', {
@@ -202,7 +200,7 @@ ipcMain.handle('run-test', async (event, testPath, projectPath) => {
       });
     });
 
-    process.on('close', code => {
+    child.on('close', code => {
       const result = {
         success: code === 0,
         output,
