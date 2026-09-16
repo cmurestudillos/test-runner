@@ -165,22 +165,27 @@ function renderTestItems(items, container, level = 0) {
                 <span class="test-count">(${countTestFiles([item])})</span>
             `;
 
+      // La carpeta debe insertarse antes que sus hijos para que el árbol quede jerárquico
+      container.appendChild(itemElement);
+
       if (item.children) {
         renderTestItems(item.children, container, level + 1);
       }
-    } else {
-      const statusIndicator = getTestStatusIndicator(item.path);
-      const testType = item.testType || 'unit';
 
-      itemElement.innerHTML = `
+      continue;
+    }
+
+    const statusIndicator = getTestStatusIndicator(item.path);
+    const testType = item.testType || 'unit';
+
+    itemElement.innerHTML = `
                 🧪 ${item.name}
                 <span class="test-type ${testType}">${testType.toUpperCase()}</span>
                 ${statusIndicator}
             `;
 
-      itemElement.addEventListener('click', () => selectTest(item, itemElement));
-      itemElement.addEventListener('dblclick', () => runSingleTest(item));
-    }
+    itemElement.addEventListener('click', () => selectTest(item, itemElement));
+    itemElement.addEventListener('dblclick', () => runSingleTest(item));
 
     container.appendChild(itemElement);
   }
