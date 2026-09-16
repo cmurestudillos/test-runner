@@ -9,7 +9,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-16+-green.svg)](https://nodejs.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow.svg)](https://www.ecmascript.org/)
 
-[🚀 Descargar](https://github.com/cmurestudillos/test-runner/releases) • [📖 Documentación](#-características) • [🐛 Reportar Bug](https://github.com/cmurestudillos/test-runner/issues) • [💡 Solicitar Feature](https://github.com/cmurestudillos/test-runner/issues)
+[🌐 Web del proyecto](https://cmurestudillos.github.io/test-runner/) • [🚀 Descargar](https://github.com/cmurestudillos/test-runner/releases) • [📖 Documentación](#-características) • [🐛 Reportar Bug](https://github.com/cmurestudillos/test-runner/issues) • [💡 Solicitar Feature](https://github.com/cmurestudillos/test-runner/issues)
 
 </div>
 
@@ -38,6 +38,22 @@
 - **Estadísticas Live**: Contadores de tests pasados/fallados/ejecutándose
 - **Atajos de Teclado**: Workflow optimizado para desarrolladores
 - **Organización Visual**: Estructura de carpetas clara con indicadores de estado
+
+---
+
+## 📸 **Capturas**
+
+<div align="center">
+
+| Explorador de tests                                     | Resultado de un test                                      |
+| ------------------------------------------------------- | --------------------------------------------------------- |
+| ![Explorador](docs/assets/screenshots/02-explorador.png) | ![Resultado](docs/assets/screenshots/03-resultado-ok.png)  |
+| **Test fallido**                                        | **Watch mode**                                             |
+| ![Fallo](docs/assets/screenshots/04-resultado-fallo.png) | ![Watch](docs/assets/screenshots/05-watch-mode.png)        |
+
+Más capturas en la [web del proyecto](https://cmurestudillos.github.io/test-runner/#/capturas).
+
+</div>
 
 ---
 
@@ -117,6 +133,13 @@ src/
 └── assets/
     └── styles/
         └── styles.css   # Estilos de la aplicación
+
+docs/                    # Web del proyecto (GitHub Pages)
+├── index.html           # SPA con router por hash
+└── assets/
+    ├── css/styles.css
+    ├── js/app.js        # Router, galería y descargas desde la API de GitHub
+    └── screenshots/     # Capturas reales de la aplicación
 ```
 
 ### Tecnologías utilizadas
@@ -124,6 +147,28 @@ src/
 - **Node.js** - Runtime de JavaScript
 - **Chokidar** - File watching para watch mode
 - **fs-extra** - Operaciones avanzadas de sistema de archivos
+
+---
+
+## 🌐 **Web del proyecto**
+
+La carpeta `docs/` contiene la página pública, publicada con **GitHub Pages** desde la rama `master`:
+👉 [cmurestudillos.github.io/test-runner](https://cmurestudillos.github.io/test-runner/)
+
+- SPA en HTML, CSS y JavaScript vanilla, **sin dependencias ni build**
+- Vistas: Inicio, Características, Capturas, Descargas y Documentación
+- Tema claro/oscuro y diseño responsive
+- Los enlaces de descarga se leen en vivo de la
+  [API de releases](https://api.github.com/repos/cmurestudillos/test-runner/releases/latest):
+  detecta el sistema operativo del visitante y muestra nombre y tamaño reales de cada instalador,
+  con respaldo a la página de releases si la API no responde
+
+### Actualizar las capturas
+
+Las imágenes de `docs/assets/screenshots/` son capturas reales de la aplicación, no mockups. Para
+regenerarlas tras un cambio de interfaz basta con abrir un proyecto con tests, ejecutar alguno y
+capturar la ventana; también puede automatizarse arrancando Electron con un script que sustituya el
+handler `select-directory` por una ruta fija y use `webContents.capturePage()`.
 
 ---
 

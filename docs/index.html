@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="es" data-theme="auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test Runner — Ejecuta tus tests JS desde el escritorio</title>
+    <meta
+      name="description"
+      content="Aplicación de escritorio para ejecutar y gestionar tests unitarios, de integración y E2E. Jest, Mocha, Cypress, Playwright y Vitest. Windows, macOS y Linux." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="assets/icons/icon.png" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Test Runner — Ejecuta tus tests JS desde el escritorio" />
+    <meta
+      property="og:description"
+      content="Explorador de tests, watch mode, resultados en tiempo real y consola integrada. Gratis y de código abierto." />
+    <meta property="og:image" content="assets/screenshots/03-resultado-ok.png" />
+    <meta property="og:url" content="https://cmurestudillos.github.io/test-runner/" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#/">
+          <img src="assets/icons/icon.png" alt="" width="32" height="32" />
+          <span>Test Runner</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="site-nav" id="siteNav" aria-label="Navegación principal">
+          <a href="#/" data-route-link="/">Inicio</a>
+          <a href="#/caracteristicas" data-route-link="/caracteristicas">Características</a>
+          <a href="#/capturas" data-route-link="/capturas">Capturas</a>
+          <a href="#/descargas" data-route-link="/descargas">Descargas</a>
+          <a href="#/documentacion" data-route-link="/documentacion">Documentación</a>
+          <a class="nav-cta" href="https://github.com/cmurestudillos/test-runner" rel="noopener">GitHub</a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">
+            <span aria-hidden="true">🌗</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ══════════════════ INICIO ══════════════════ -->
+      <section class="view" data-route="/">
+        <div class="hero">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <p class="eyebrow">
+                <span class="dot"></span> Código abierto · MIT ·
+                <span id="heroVersion">v1.0.0</span>
+              </p>
+              <h1>Tus tests, en una app de escritorio</h1>
+              <p class="lead">
+                Abre cualquier proyecto JavaScript o TypeScript y ejecuta sus tests unitarios, de integración y E2E sin
+                tocar la terminal. Resultados en tiempo real, watch mode y consola integrada.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-lg" id="heroDownload" href="#/descargas"> ⬇ Descargar gratis </a>
+                <a class="btn btn-ghost btn-lg" href="#/capturas">Ver capturas</a>
+              </div>
+              <p class="hero-meta" id="heroMeta">Windows · macOS · Linux — sin registro, sin telemetría</p>
+            </div>
+
+            <figure class="hero-shot">
+              <img
+                src="assets/screenshots/03-resultado-ok.png"
+                alt="Ventana de Test Runner mostrando el explorador de tests y la salida de un test que ha pasado"
+                width="1264"
+                height="755"
+                loading="eager" />
+            </figure>
+          </div>
+        </div>
+
+        <div class="container">
+          <ul class="stat-row">
+            <li><strong>6</strong><span>frameworks soportados</span></li>
+            <li><strong>3</strong><span>sistemas operativos</span></li>
+            <li><strong>0</strong><span>configuración necesaria</span></li>
+            <li><strong>MIT</strong><span>licencia libre</span></li>
+          </ul>
+
+          <h2 class="section-title">Cómo funciona</h2>
+          <ol class="steps">
+            <li>
+              <span class="step-num">1</span>
+              <h3>Selecciona tu proyecto</h3>
+              <p>
+                Elige la carpeta raíz y la app escanea en busca de archivos de test, ignorando
+                <code>node_modules</code>.
+              </p>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <h3>Ejecuta con doble clic</h3>
+              <p>Cada test se lanza con el script de tu <code>package.json</code>, así que respeta tu configuración.</p>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <h3>Lee los resultados</h3>
+              <p>Salida estándar y errores formateados, contadores en vivo y consola con todo el log.</p>
+            </li>
+          </ol>
+
+          <div class="cta-band">
+            <div>
+              <h2>¿Listo para probarla?</h2>
+              <p>Instaladores firmados para Windows, macOS y Linux. Pesa menos de 120&nbsp;MB.</p>
+            </div>
+            <a class="btn btn-primary btn-lg" href="#/descargas">Ir a descargas</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ CARACTERÍSTICAS ══════════════════ -->
+      <section class="view" data-route="/caracteristicas">
+        <div class="container">
+          <h1 class="page-title">Características</h1>
+          <p class="page-lead">
+            Todo lo que necesitas para pasar del «¿por qué falla este test?» al arreglo, sin cambiar de ventana.
+          </p>
+
+          <div class="card-grid">
+            <article class="card">
+              <span class="card-icon">🔍</span>
+              <h3>Explorador inteligente</h3>
+              <p>
+                Detecta automáticamente <code>*.test.js</code>, <code>*.spec.ts</code>, <code>*.e2e.js</code> e
+                <code>*.integration.js</code> en todo el árbol del proyecto.
+              </p>
+            </article>
+            <article class="card">
+              <span class="card-icon">⚡</span>
+              <h3>Ejecución con un clic</h3>
+              <p>Doble clic o <kbd>Enter</kbd> sobre un test. Se ejecuta con el runner que ya usa tu proyecto.</p>
+            </article>
+            <article class="card">
+              <span class="card-icon">👁️</span>
+              <h3>Watch mode</h3>
+              <p>Vigila los archivos con Chokidar y te avisa en cuanto cambia un test, listo para relanzarlo.</p>
+            </article>
+            <article class="card">
+              <span class="card-icon">📊</span>
+              <h3>Resultados en vivo</h3>
+              <p>Contadores de pasados, fallados y en ejecución, más indicadores de estado por archivo.</p>
+            </article>
+            <article class="card">
+              <span class="card-icon">🎛️</span>
+              <h3>Filtros por tipo</h3>
+              <p>Muestra solo unitarios, E2E o de integración para centrarte en lo que estás tocando.</p>
+            </article>
+            <article class="card">
+              <span class="card-icon">🖥️</span>
+              <h3>Consola integrada</h3>
+              <p>Todo el <code>stdout</code> y <code>stderr</code> con marca de tiempo y colores por severidad.</p>
+            </article>
+          </div>
+
+          <h2 class="section-title">Frameworks soportados</h2>
+          <p class="muted">
+            Test Runner no reimplementa ningún runner: invoca el script <code>test</code>, <code>test:unit</code> o
+            <code>test:e2e</code> de tu <code>package.json</code>. Si funciona en tu terminal, funciona aquí.
+          </p>
+          <ul class="chip-list">
+            <li>Jest</li>
+            <li>Mocha</li>
+            <li>Vitest</li>
+            <li>Cypress</li>
+            <li>Playwright</li>
+            <li>node:test</li>
+            <li>…y cualquier otro</li>
+          </ul>
+
+          <h2 class="section-title">Atajos de teclado</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Atajo</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>O</kbd></td>
+                  <td>Abrir proyecto</td>
+                </tr>
+                <tr>
+                  <td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>W</kbd></td>
+                  <td>Activar o desactivar watch mode</td>
+                </tr>
+                <tr>
+                  <td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>L</kbd></td>
+                  <td>Limpiar la consola</td>
+                </tr>
+                <tr>
+                  <td><kbd>Enter</kbd></td>
+                  <td>Ejecutar el test seleccionado</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ CAPTURAS ══════════════════ -->
+      <section class="view" data-route="/capturas">
+        <div class="container">
+          <h1 class="page-title">Capturas</h1>
+          <p class="page-lead">
+            Capturas reales de la aplicación ejecutando un proyecto de ejemplo con tests unitarios, de integración y
+            E2E. Haz clic para ampliar.
+          </p>
+
+          <div class="gallery" id="gallery">
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/02-explorador.png"
+                data-caption="Explorador de tests: el árbol se construye escaneando el proyecto, con etiquetas por tipo de test.">
+                <img
+                  src="assets/screenshots/02-explorador.png"
+                  alt="Explorador de tests con el árbol de archivos del proyecto cargado"
+                  loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Proyecto cargado</strong> — el árbol se construye escaneando la carpeta, con etiquetas UNIT, E2E
+                e INTEGRATION.
+              </figcaption>
+            </figure>
+
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/03-resultado-ok.png"
+                data-caption="Test superado: salida estándar completa del runner y código de salida 0.">
+                <img
+                  src="assets/screenshots/03-resultado-ok.png"
+                  alt="Panel de resultados mostrando un test que ha pasado"
+                  loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Test superado</strong> — salida completa del runner, código de salida e indicador verde en el
+                archivo.
+              </figcaption>
+            </figure>
+
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/04-resultado-fallo.png"
+                data-caption="Test fallido: el assertion error aparece resaltado en la consola inferior.">
+                <img
+                  src="assets/screenshots/04-resultado-fallo.png"
+                  alt="Panel de resultados mostrando un test fallido con su error de aserción"
+                  loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Test fallido</strong> — el <code>AssertionError</code> se resalta en la consola con su traza
+                completa.
+              </figcaption>
+            </figure>
+
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/05-watch-mode.png"
+                data-caption="Watch mode activo: la barra de estado indica que se están vigilando los archivos.">
+                <img
+                  src="assets/screenshots/05-watch-mode.png"
+                  alt="Aplicación con el watch mode activado"
+                  loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Watch mode</strong> — vigila los archivos de test y avisa en la consola de cada cambio.
+              </figcaption>
+            </figure>
+
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/06-filtros.png"
+                data-caption="Filtros por tipo: ocultando unitarios e integración para ver solo los tests E2E.">
+                <img
+                  src="assets/screenshots/06-filtros.png"
+                  alt="Explorador filtrado mostrando únicamente los tests E2E"
+                  loading="lazy" />
+              </button>
+              <figcaption><strong>Filtros por tipo</strong> — aquí solo se muestran los tests E2E.</figcaption>
+            </figure>
+
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/01-inicio.png"
+                data-caption="Pantalla inicial de Test Runner, antes de seleccionar un proyecto.">
+                <img src="assets/screenshots/01-inicio.png" alt="Pantalla inicial de la aplicación" loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Pantalla inicial</strong> — al arrancar solo hay que elegir la carpeta del proyecto.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ DESCARGAS ══════════════════ -->
+      <section class="view" data-route="/descargas">
+        <div class="container">
+          <h1 class="page-title">Descargas</h1>
+          <p class="page-lead">
+            Última versión: <strong id="releaseTag">v1.0.0</strong>
+            <span id="releaseDate" class="muted"></span>
+          </p>
+
+          <div class="download-grid" id="downloadGrid">
+            <article class="download-card" data-os="windows">
+              <span class="os-icon" aria-hidden="true">🪟</span>
+              <h3>Windows</h3>
+              <p class="os-detail">Instalador <code>.exe</code> · 64 bits</p>
+              <a
+                class="btn btn-primary"
+                data-dl="windows"
+                href="https://github.com/cmurestudillos/test-runner/releases/latest"
+                >Descargar</a
+              >
+              <p class="dl-size" data-size="windows">~91 MB</p>
+            </article>
+
+            <article class="download-card" data-os="mac">
+              <span class="os-icon" aria-hidden="true">🍎</span>
+              <h3>macOS</h3>
+              <p class="os-detail">Imagen <code>.dmg</code> · Apple Silicon</p>
+              <a
+                class="btn btn-primary"
+                data-dl="mac"
+                href="https://github.com/cmurestudillos/test-runner/releases/latest"
+                >Descargar</a
+              >
+              <p class="dl-size" data-size="mac">~105 MB</p>
+            </article>
+
+            <article class="download-card" data-os="linux">
+              <span class="os-icon" aria-hidden="true">🐧</span>
+              <h3>Linux</h3>
+              <p class="os-detail">Ejecutable <code>.AppImage</code></p>
+              <a
+                class="btn btn-primary"
+                data-dl="linux"
+                href="https://github.com/cmurestudillos/test-runner/releases/latest"
+                >Descargar</a
+              >
+              <p class="dl-size" data-size="linux">~112 MB</p>
+            </article>
+          </div>
+
+          <p class="muted small">
+            ¿Prefieres ver todos los archivos?
+            <a href="https://github.com/cmurestudillos/test-runner/releases" rel="noopener"
+              >Todas las versiones en GitHub</a
+            >.
+          </p>
+
+          <h2 class="section-title">Notas de instalación</h2>
+          <div class="note-grid">
+            <div class="note">
+              <h3>🪟 Windows</h3>
+              <p>
+                SmartScreen puede avisar de que el editor es desconocido porque el instalador no está firmado. Pulsa
+                <em>Más información → Ejecutar de todas formas</em>.
+              </p>
+            </div>
+            <div class="note">
+              <h3>🍎 macOS</h3>
+              <p>
+                Si Gatekeeper bloquea la app, ábrela con clic derecho → <em>Abrir</em>, o ejecuta
+                <code>xattr -cr "/Applications/Test Runner.app"</code>.
+              </p>
+            </div>
+            <div class="note">
+              <h3>🐧 Linux</h3>
+              <p>
+                Dale permisos de ejecución al AppImage:
+                <code>chmod +x Test.Runner-1.0.0.AppImage</code> y lánzalo con doble clic.
+              </p>
+            </div>
+          </div>
+
+          <h2 class="section-title">Compilar desde el código</h2>
+          <pre class="code-block"><code>git clone https://github.com/cmurestudillos/test-runner.git
+cd test-runner
+pnpm install
+
+pnpm start           # ejecutar en desarrollo
+pnpm package:win     # generar instalador de Windows
+pnpm package:mac     # generar imagen de macOS
+pnpm package:linux   # generar AppImage</code></pre>
+          <p class="muted small">Requisitos: Node.js 22+ y pnpm 11+.</p>
+        </div>
+      </section>
+
+      <!-- ══════════════════ DOCUMENTACIÓN ══════════════════ -->
+      <section class="view" data-route="/documentacion">
+        <div class="container docs-layout">
+          <article class="docs-body">
+            <h1 class="page-title">Documentación</h1>
+
+            <h2 id="uso">Guía de uso</h2>
+            <h3>1. Seleccionar proyecto</h3>
+            <p>
+              Pulsa <strong>📁 Seleccionar Proyecto</strong> (o <kbd>Ctrl</kbd>+<kbd>O</kbd>) y elige la carpeta raíz.
+              La app recorre el árbol ignorando <code>node_modules</code> y carpetas ocultas.
+            </p>
+
+            <h3>2. Ejecutar tests</h3>
+            <p>
+              Un clic selecciona el archivo; un doble clic lo ejecuta. Con un test seleccionado,
+              <kbd>Enter</kbd> hace lo mismo. Test Runner lanza <code>npm test &lt;ruta&gt;</code>, o
+              <code>npm run test:e2e</code> / <code>npm run test:unit</code> si tu <code>package.json</code> define esos
+              scripts.
+            </p>
+
+            <h3>3. Watch mode</h3>
+            <p>
+              Con <kbd>Ctrl</kbd>+<kbd>W</kbd> activas el vigilante de archivos. Cada vez que guardes un test, la
+              consola te lo indica para que lo relances.
+            </p>
+
+            <h3>4. Filtrar</h3>
+            <p>Las casillas <em>Unitarios</em>, <em>E2E</em> e <em>Integración</em> filtran el árbol al vuelo.</p>
+
+            <h2 id="deteccion">Cómo se detectan los tests</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Patrón del archivo</th>
+                    <th>Tipo asignado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>*.test.js</code> · <code>*.test.ts(x)</code></td>
+                    <td>Unitario</td>
+                  </tr>
+                  <tr>
+                    <td><code>*.spec.js</code> · <code>*.spec.ts(x)</code></td>
+                    <td>Unitario</td>
+                  </tr>
+                  <tr>
+                    <td><code>*.integration.js</code> · <code>*.integration.ts</code></td>
+                    <td>Integración</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code>*.e2e.js</code> · nombres con <code>cypress</code>, <code>playwright</code> o
+                      <code>webdriver</code>
+                    </td>
+                    <td>E2E</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 id="arquitectura">Arquitectura</h2>
+            <pre class="code-block"><code>src/
+├── main.js       # proceso principal: escaneo, ejecución y watchers
+├── preload.js    # puente IPC seguro (contextIsolation activo)
+├── renderer.js   # estado e interfaz
+├── index.html    # estructura de la ventana
+└── assets/       # estilos e iconos</code></pre>
+            <p>
+              Construida con <strong>Electron</strong>, <strong>Chokidar</strong> para el watch mode y
+              <strong>fs-extra</strong> para el sistema de archivos. Sin frameworks de UI: HTML, CSS y JavaScript.
+            </p>
+
+            <h2 id="roadmap">Roadmap</h2>
+            <ul class="roadmap">
+              <li>
+                <span class="tag">v1.1</span> Tema claro y oscuro, exportar informes, cobertura de Jest, configuración
+                persistente
+              </li>
+              <li>
+                <span class="tag">v1.2</span> Sistema de plugins, integración con GitHub Actions, tests en paralelo
+              </li>
+              <li>
+                <span class="tag">v2.0</span> Editor de tests integrado, depuración visual, sincronización en la nube
+              </li>
+            </ul>
+
+            <h2 id="contribuir">Contribuir</h2>
+            <p>
+              Los issues y pull requests son bienvenidos. Abre un
+              <a href="https://github.com/cmurestudillos/test-runner/issues" rel="noopener">issue</a>
+              describiendo el bug (con pasos, sistema operativo y captura) o la funcionalidad que echas de menos.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <p class="brand-sm">🧪 Test Runner</p>
+          <p class="muted small">Licencia MIT · Hecho por Carlos Mur</p>
+        </div>
+        <nav aria-label="Enlaces del pie">
+          <a href="https://github.com/cmurestudillos/test-runner" rel="noopener">Repositorio</a>
+          <a href="https://github.com/cmurestudillos/test-runner/releases" rel="noopener">Versiones</a>
+          <a href="https://github.com/cmurestudillos/test-runner/issues" rel="noopener">Reportar un bug</a>
+          <a href="https://github.com/cmurestudillos" rel="noopener">@cmurestudillos</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
+      <figure>
+        <img id="lightboxImg" src="" alt="" />
+        <figcaption id="lightboxCaption"></figcaption>
+      </figure>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
